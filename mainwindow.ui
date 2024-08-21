@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModality::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>362</width>
+    <height>362</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Communication Test</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="qdarkstyle/style.qrc">
+    <normaloff>:/qss_icons/rc/icon.ico</normaloff>:/qss_icons/rc/icon.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>50</y>
+      <width>361</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::TabPosition::West</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::TabShape::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::TextElideMode::ElideNone</enum>
+    </property>
+    <property name="documentMode">
+     <bool>false</bool>
+    </property>
+    <property name="tabsClosable">
+     <bool>false</bool>
+    </property>
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="serial_port">
+     <attribute name="title">
+      <string>Serial</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="2" colspan="2">
+       <widget class="QPushButton" name="serial_open">
+        <property name="text">
+         <string>Open</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_9">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Stop bits :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="baud_rate">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QComboBox" name="stop_bits">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Parity :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QComboBox" name="data_bits">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Baud :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="label_10">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Flow :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QLabel" name="serial_status">
+        <property name="text">
+         <string>Port has not opened yet</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="parity">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QComboBox" name="flow_control">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Port :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="serial_port_name">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Data bits :</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="tcp">
+     <attribute name="title">
+      <string>TCP</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>TCP Port :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="tcp_port">
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="wrapping">
+         <bool>false</bool>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <property name="showGroupSeparator" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="suffix">
+         <string/>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+        <property name="value">
+         <number>6666</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="tcp_listen">
+        <property name="text">
+         <string>Listen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Status :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="tcp_status">
+        <property name="text">
+         <string>Server is not running</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QLabel" name="tcp_connection_info">
+        <property name="text">
+         <string>Client is not connected yet</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QToolButton" name="closebutton">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+    <property name="icon">
+     <iconset resource="qdarkstyle/style.qrc">
+      <normaloff>:/qss_icons/rc/close-pressed.png</normaloff>:/qss_icons/rc/close-pressed.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="title">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>7</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>qCommTest</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>210</y>
+      <width>361</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::TabPosition::West</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="test">
+     <attribute name="title">
+      <string>Test</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>RX</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLCDNumber" name="rx_count">
+          <property name="frameShape">
+           <enum>QFrame::Shape::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <property name="digitCount">
+           <number>4</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QProgressBar" name="rx_progress">
+          <property name="maximum">
+           <number>4000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+          <property name="textDirection">
+           <enum>QProgressBar::Direction::TopToBottom</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>TX</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLCDNumber" name="tx_count">
+          <property name="frameShape">
+           <enum>QFrame::Shape::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <property name="digitCount">
+           <number>4</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QProgressBar" name="tx_progress">
+          <property name="maximum">
+           <number>4000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+          <property name="textDirection">
+           <enum>QProgressBar::Direction::TopToBottom</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Error</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLCDNumber" name="error_count">
+          <property name="frameShape">
+           <enum>QFrame::Shape::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <property name="digitCount">
+           <number>4</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QProgressBar" name="error_progress">
+          <property name="maximum">
+           <number>4000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+          <property name="textDirection">
+           <enum>QProgressBar::Direction::TopToBottom</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="moodicon">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="qdarkstyle/style.qrc">:/qss_icons/rc/mood/mood_disconnected.png</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="test_status">
+        <property name="text">
+         <string>Test has not started yet</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="test_data_size">
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>0 KB</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <property name="indent">
+         <number>15</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="log">
+     <attribute name="title">
+      <string>Log</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QTextEdit" name="log_textedit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Consolas</family>
+         </font>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="logo">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>3</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="qdarkstyle/style.qrc">:/qss_icons/rc/logo.png</pixmap>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="qdarkstyle/style.qrc"/>
+ </resources>
+ <connections/>
+</ui>

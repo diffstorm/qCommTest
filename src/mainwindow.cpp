@@ -623,17 +623,13 @@ void MainWindow::Test(Channel_t channel, QByteArray dataBuffer)
                     //------------------------------------------------------------
                     // TX
                     //------------------------------------------------------------
-                    dataBuffer.resize(m_testIndex);
-                    dataBuffer.clear();
-                    i = m_testIndex;
-
-                    while(i)
-                    {
-                        dataBuffer.append((char)i);
-                        i--;
+                    QByteArray dataToSend;
+                    dataToSend.resize(m_testIndex);
+                    for (qint32 k = 0; k < m_testIndex; ++k) {
+                        dataToSend[k] = (char)(m_testIndex - k);
                     }
 
-                    ret = Send(channel, dataBuffer);
+                    ret = Send(channel, dataToSend);
 
                     if(ret)
                     {
@@ -709,8 +705,7 @@ QByteArray MainWindow::Protocol_Wrap(QByteArray dataBuffer)
     QByteArray data;
     quint32 crc;
     crc = crc32(dataBuffer.data(), dataBuffer.size());
-    data.resize(dataBuffer.size() + PROTOCOL_OVERHEAD);
-    data.clear();
+    data.reserve(dataBuffer.size() + PROTOCOL_OVERHEAD);
     data.append((char)0x00);
     data.append((dataBuffer.size() >> 8) & 0xFF);
     data.append(dataBuffer.size() & 0xFF);
@@ -732,8 +727,6 @@ QByteArray MainWindow::Protocol_Unwrap(QByteArray dataBuffer)
     char *b = dataBuffer.data();
     //qDebug() << "Protocol : Unwrap -" << QString(dataBuffer.toHex());
     m_data_size += dataBuffer.size();
-    data.resize(0);
-    data.clear();
 
     if(PROTOCOL_OVERHEAD < dataBuffer.size())
     {
@@ -750,9 +743,7 @@ QByteArray MainWindow::Protocol_Unwrap(QByteArray dataBuffer)
 
                     if(crc == crcp)
                     {
-                        data.resize(length);
-                        data.clear();
-                        data.append(&b[3], length);
+                        data = QByteArray(&b[3], length);
                     }
                     else
                     {

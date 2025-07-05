@@ -73,6 +73,7 @@ int main() {
     int test_index = 1;
     int fail_try = FAIL_TRY_MAX;
     unsigned char *response = NULL;
+    int ret_code = 0;
 
     struct timeval timeout;
     timeout.tv_sec = SEND_RECEIVE_TIMEOUT_S;
@@ -135,8 +136,10 @@ int main() {
 
     if (test_index > TEST_INDEX_MAX && fail_try > 0) {
         printf("Test passed\n");
+        ret_code = 0;
     } else {
         printf("Test failed\n");
+        ret_code = 1;
     }
 
     if (response) {
@@ -144,5 +147,5 @@ int main() {
     }
     close(sock);
 
-    return 0;
+    return ret_code;
 }

@@ -122,6 +122,7 @@ int main() {
     int test_index = 1;
     int fail_try = FAIL_TRY_MAX;
     std::vector<unsigned char> response;
+    int ret_code = 0;
 
     int sock = -1;
     while (fail_try > 0) {
@@ -175,8 +176,10 @@ int main() {
 
     if (test_index > TEST_INDEX_MAX && fail_try > 0) {
         std::cout << "Test passed" << std::endl;
+        ret_code = 0;
     } else {
         std::cout << "Test failed" << std::endl;
+        ret_code = 1;
     }
 
     if (sock != -1) {
@@ -184,5 +187,5 @@ int main() {
     }
     cleanup_winsock();
 
-    return 0;
+    return ret_code;
 }

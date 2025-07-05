@@ -101,8 +101,10 @@ def run_communication_test():
     # Test result
     if test_index > TEST_INDEX_MAX and fail_try > 0:
         print("Test passed")
+        return 0
     else:
         print("Test failed")
+        return 1
 
 if __name__ == "__main__":
-    run_communication_test()
+    exit(run_communication_test())

@@ -42,6 +42,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void startTcpServer(int port);
 
 private:
     Test_Step_t     m_testStep;

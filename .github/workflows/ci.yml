@@ -1,0 +1,87 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Qt5 dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake qtcreator qtbase5-dev qtserialport5-dev libqt5network5-dev
+
+    - name: Install Qt6 dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y qt6-base-dev qt6-serialport-dev libqt6network6-dev
+
+    - name: Configure CMake for Qt5
+      run: cmake -B build_qt5 -DQT_VERSION=5
+
+    - name: Build project with Qt5
+      run: cmake --build build_qt5
+
+    - name: Configure CMake for Qt6
+      run: cmake -B build_qt6 -DQT_VERSION=6
+
+    - name: Build project with Qt6
+      run: cmake --build build_qt6
+
+    - name: Compile C test client
+      run: gcc -o test/test_tcp test/test_tcp.c
+
+    - name: Compile C++ test client
+      run: g++ -std=c++17 -o test/test_tcp_cpp test/test_tcp.cpp
+
+    - name: Run Qt5 application and C test
+      run: |
+        ./build_qt5/qCommTest -p 6666 &
+        sleep 2 # Give the server time to start
+        ./test/test_tcp
+      working-directory: ${{ github.workspace }}
+
+    - name: Run Qt5 application and C++ test
+      run: |
+        ./build_qt5/qCommTest -p 6666 &
+        sleep 2 # Give the server time to start
+        ./test/test_tcp_cpp
+      working-directory: ${{ github.workspace }}
+
+    - name: Run Qt5 application and Python test
+      run: |
+        ./build_qt5/qCommTest -p 6666 &
+        sleep 2 # Give the server time to start
+        python3 test/test_tcp.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Run Qt6 application and C test
+      run: |
+        ./build_qt6/qCommTest -p 6666 &
+        sleep 2 # Give the server time to start
+        ./test/test_tcp
+      working-directory: ${{ github.workspace }}
+
+    - name: Run Qt6 application and C++ test
+      run: |
+        ./build_qt6/qCommTest -p 6666 &
+        sleep 2 # Give the server time to start
+        ./test/test_tcp_cpp
+      working-directory: ${{ github.workspace }}
+
+    - name: Run Qt6 application and Python test
+      run: |
+        ./build_qt6/qCommTest -p 6666 &
+        sleep 2 # Give the server time to start
+        python3 test/test_tcp.py
+      working-directory: ${{ github.workspace }}

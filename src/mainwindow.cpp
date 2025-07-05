@@ -335,6 +335,11 @@ void MainWindow::onTcpClientDisconnected()
 
 void MainWindow::on_tcp_listen_clicked()
 {
+    startTcpServer(ui->tcp_port->value());
+}
+
+void MainWindow::startTcpServer(int port)
+{
     if(m_tcpServer->isListenning())
     {
         TcpServer_Stop();
@@ -345,9 +350,7 @@ void MainWindow::on_tcp_listen_clicked()
     }
     else
     {
-        int serverport = ui->tcp_port->value();
-
-        if(false != TcpServer_Start(serverport))
+        if(false != TcpServer_Start(port))
         {
             ui->tcp_port->setEnabled(false);
             ui->tcp_listen->setText("Stop");

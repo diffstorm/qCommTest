@@ -26,16 +26,15 @@ endif()
 
 # Add source files
 set(SOURCES
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    serial_port.cpp
-    serial_port.h
-    tcp_server.cpp
-    tcp_server.h
-    qdarkstyle/style.qrc
-)
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    src/mainwindow.ui
+    src/serial_port.cpp
+    src/serial_port.h
+    src/tcp_server.cpp
+    src/tcp_server.h
+    src/qdarkstyle/style.qrc)
 
 # Add executable
 add_executable(qCommTest ${SOURCES})
@@ -46,7 +45,7 @@ target_link_libraries(qCommTest PRIVATE ${QT_LIBS})
 # Add icon for Windows
 if(WIN32)
     set_target_properties(qCommTest PROPERTIES WIN32_EXECUTABLE TRUE)
-    set(RC_ICONS qdarkstyle/rc/icon.ico)
+    set(RC_ICONS src/qdarkstyle/rc/icon.ico)
     set(RC_FILE ${CMAKE_CURRENT_BINARY_DIR}/qCommTest.rc)
     file(WRITE ${RC_FILE} "IDI_ICON1 ICON DISCARDABLE \"${CMAKE_CURRENT_SOURCE_DIR}/${RC_ICONS}\"")
     target_sources(qCommTest PRIVATE ${RC_FILE})

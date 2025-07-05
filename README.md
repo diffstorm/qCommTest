@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/diffstorm/qCommTest)](https://github.com/diffstorm/qCommTest/blob/main/LICENSE)
 [![Language](https://img.shields.io/github/languages/top/diffstorm/qCommTest)](https://github.com/diffstorm/qCommTest)
 
-A simple tool for testing serial (RS232) and TCP communication.
+A good looking UI for stress testing serial (RS232) and TCP communication.
 
 ## Features
 
@@ -30,19 +30,90 @@ A simple tool for testing serial (RS232) and TCP communication.
 -   **Qt:** A cross-platform application framework. You can use either Qt5 or Qt6.
 -   **C++ Compiler:** A C++ compiler that is compatible with the Qt version you are using.
 
+## Integration Tests
+
+This project includes integration tests to verify the TCP server functionality. These tests are located in the `test/` directory.
+
+-   `test_tcp.py`: A Python script that acts as a TCP client to test the `qCommTest` TCP server.
+-   `test_tcp.c`: A C program that acts as a TCP client, similar to the Python script.
+-   `test_tcp.cpp`: A C++17 program that acts as a TCP client, similar to the Python script.
+
+To run these tests, first ensure the `qCommTest` application is running and its TCP server is listening on port 6666.
+
+### Running the Python Test
+
+```bash
+python3 test/test_tcp.py
+```
+
+### Running the C Test
+
+```bash
+gcc -o test/test_tcp test/test_tcp.c
+./test/test_tcp
+```
+
+### Running the C++ Test
+
+```bash
+g++ -std=c++17 -o test/test_tcp_cpp test/test_tcp.cpp
+./test/test_tcp_cpp
+```
+
+### Windows Specific Compilation for C/C++ Tests
+
+For Windows, you might need to link against `ws2_32` for the C and C++ tests:
+
+```bash
+gcc -o test/test_tcp test/test_tcp.c -lws2_32
+g++ -std=c++17 -o test/test_tcp_cpp test/test_tcp.cpp -lws2_32
+```
+
+### Build with CMake (Qt5/Qt6)
+
+To build the project using CMake:
+
+1.  Create a build directory:
+    ```bash
+    mkdir build
+    cd build
+    ```
+
+2.  Configure CMake to use a specific Qt version (e.g., Qt6):
+    ```bash
+    cmake .. -DQT_VERSION=6
+    ```
+    *Note: Replace `-DQT_VERSION=6` with `-DQT_VERSION=5` to build with Qt5.*
+
+3.  Build the project:
+    ```bash
+    cmake --build .
+    ```
+
+### Build with qmake (Qt5/Qt6)
+
+To build the project using `qmake` (for Qt Creator or command line):
+
+1.  **For Qt5:**
+    ```bash
+    qmake -qt=qt5 qCommTest.pro
+    make
+    ```
+
+2.  **For Qt6:**
+    ```bash
+    qmake -qt=qt6 qCommTest.pro
+    make
+    ```
+
+    *Note: You might need to specify the full path to `qmake` if it's not in your PATH, e.g., `/path/to/Qt/5.x.x/gcc_64/bin/qmake` or `/path/to/Qt/6.x.x/gcc_64/bin/qmake`.*
+
 ### Windows
 
 1.  **Install Chocolatey:** If you don't have Chocolatey, install it by following the instructions on the [Chocolatey website](https://chocolatey.org/install).
 2.  **Install CMake, Qt, and a compiler:**
     ```bash
     choco install cmake qt-creator-ide qt6-base qt6-serialport
-    ```
-3.  **Build the project:**
-    ```bash
-    mkdir build
-    cd build
-    cmake ..
-    cmake --build .
     ```
 
 ### macOS
@@ -53,13 +124,6 @@ A simple tool for testing serial (RS232) and TCP communication.
     brew install cmake qt5
     ```
     *Note: You can also use `qt6` instead of `qt5`.*
-3.  **Build the project:**
-    ```bash
-    mkdir build
-    cd build
-    cmake ..
-    cmake --build .
-    ```
 
 ### Linux (Ubuntu)
 
@@ -69,13 +133,6 @@ A simple tool for testing serial (RS232) and TCP communication.
     sudo apt-get install build-essential cmake qtcreator qtbase5-dev qtserialport5-dev
     ```
     *Note: For Qt6, you can use `qt6-base-dev` and `qt6-serialport-dev`.*
-2.  **Build the project:**
-    ```bash
-    mkdir build
-    cd build
-    cmake ..
-    cmake --build .
-    ```
 
 ## Author
 

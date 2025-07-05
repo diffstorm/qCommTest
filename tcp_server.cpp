@@ -327,11 +327,11 @@ void TcpServer::onTimeoutRX()
     }
 }
 
-void TcpServer::onSocketErrorOccured(QAbstractSocket::SocketError err)
+void TcpServer::onSocketErrorOccured(QAbstractSocket::SocketError socketError)
 {
-    switch(err)
+    switch(socketError)
     {
-        case QTcpSocket::RemoteHostClosedError:
+        case QAbstractSocket::RemoteHostClosedError:
         {
             qint64 diff = QDateTime::currentMSecsSinceEpoch() - m_dataSentAt;
 
@@ -342,12 +342,12 @@ void TcpServer::onSocketErrorOccured(QAbstractSocket::SocketError err)
         }
         break;
 
-        case QTcpSocket::ConnectionRefusedError:
+        case QAbstractSocket::ConnectionRefusedError:
             qDebug() << "TCP Connection refused";
             break;
 
         default:
-            qCritical() << "TCP socket error:" << err << "-" << m_socket->errorString();
+            qCritical() << "TCP socket error:" << socketError << "-" << m_socket->errorString();
             break;
     }
 }

@@ -1,6 +1,14 @@
 # qCommTest - Serial Communication Test Tool
 QT += core gui network serialport widgets
 
+# Add support for Qt6
+QT_MAJOR_VERSION = $str_member($split(QT_VERSION, .), 0)
+
+if(equals(QT_MAJOR_VERSION, 6)) {
+    QT += serialport
+}
+
+
 TARGET = qCommTest
 TEMPLATE = app
 

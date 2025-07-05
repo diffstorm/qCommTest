@@ -130,9 +130,9 @@ To build the project using `qmake` (for Qt Creator or command line):
 1.  **Install dependencies:**
     ```bash
     sudo apt-get update
-    sudo apt-get install build-essential cmake qtcreator qtbase5-dev libqt5serialport5-dev
+    sudo apt-get install build-essential cmake qtcreator qt6-base-dev qt6-declarative-dev qt6-serialport-dev
     ```
-    *Note: For Qt6, you can use `qt6-base-dev qt6-declarative-dev qt6-serialport-dev`.*
+    *Note: For Qt5 compatibility, you can use `qtbase5-dev libqt5serialport5-dev` instead.*
 
 ## Author
 

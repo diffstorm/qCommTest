@@ -19,12 +19,12 @@ jobs:
     - name: Install Qt5 dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake qtcreator qtbase5-dev qtserialport5-dev libqt5network5-dev
+        sudo apt-get install -y build-essential cmake qtcreator qtbase5-dev libqt5serialport5 libqt5serialport5-dev
 
     - name: Install Qt6 dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y qt6-base-dev qt6-serialport-dev libqt6network6-dev
+        sudo apt-get install -y qt6-base-dev qt6-declarative-dev qt6-serialport-dev
 
     - name: Configure CMake for Qt5
       run: cmake -B build_qt5 -DQT_VERSION=5

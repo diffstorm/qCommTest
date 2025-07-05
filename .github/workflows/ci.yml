@@ -46,42 +46,48 @@ jobs:
 
     - name: Run Qt5 application and C test
       run: |
-        ./build_qt5/qCommTest -p 6666 &
+        QT_QPA_PLATFORM=offscreen ./build_qt5/qCommTest -p 6666 &
         sleep 2 # Give the server time to start
         ./test/test_tcp
+        killall qCommTest || true # Kill the application, '|| true' to prevent failure if not found
       working-directory: ${{ github.workspace }}
 
     - name: Run Qt5 application and C++ test
       run: |
-        ./build_qt5/qCommTest -p 6666 &
+        QT_QPA_PLATFORM=offscreen ./build_qt5/qCommTest -p 6666 &
         sleep 2 # Give the server time to start
         ./test/test_tcp_cpp
+        killall qCommTest || true
       working-directory: ${{ github.workspace }}
 
     - name: Run Qt5 application and Python test
       run: |
-        ./build_qt5/qCommTest -p 6666 &
+        QT_QPA_PLATFORM=offscreen ./build_qt5/qCommTest -p 6666 &
         sleep 2 # Give the server time to start
         python3 test/test_tcp.py
+        killall qCommTest || true
       working-directory: ${{ github.workspace }}
 
     - name: Run Qt6 application and C test
       run: |
-        ./build_qt6/qCommTest -p 6666 &
+        QT_QPA_PLATFORM=offscreen ./build_qt6/qCommTest -p 6666 &
         sleep 2 # Give the server time to start
         ./test/test_tcp
+        killall qCommTest || true
       working-directory: ${{ github.workspace }}
 
     - name: Run Qt6 application and C++ test
       run: |
-        ./build_qt6/qCommTest -p 6666 &
+        QT_QPA_PLATFORM=offscreen ./build_qt6/qCommTest -p 6666 &
         sleep 2 # Give the server time to start
         ./test/test_tcp_cpp
+        killall qCommTest || true
       working-directory: ${{ github.workspace }}
 
     - name: Run Qt6 application and Python test
       run: |
-        ./build_qt6/qCommTest -p 6666 &
+        QT_QPA_PLATFORM=offscreen ./build_qt6/qCommTest -p 6666 &
         sleep 2 # Give the server time to start
         python3 test/test_tcp.py
+        killall qCommTest || true
       working-directory: ${{ github.workspace }}
